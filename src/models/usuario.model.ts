@@ -1,4 +1,11 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, belongsTo, hasMany, hasOne} from '@loopback/repository';
+import {Plan} from './plan.model';
+import {Vehiculo} from './vehiculo.model';
+import {Producto} from './producto.model';
+import {Capacitacion} from './capacitacion.model';
+import {Prospecto} from './prospecto.model';
+import {Servicio} from './servicio.model';
+import {Sucursal} from './sucursal.model';
 
 @model()
 export class Usuario extends Entity {
@@ -75,6 +82,39 @@ export class Usuario extends Entity {
   })
   tipo_de_cliente: string;
 
+  @belongsTo(() => Plan)
+  planId: string;
+
+  @hasMany(() => Plan)
+  plans: Plan[];
+
+  @hasMany(() => Vehiculo)
+  vehiculos: Vehiculo[];
+
+  @hasMany(() => Producto)
+  productos: Producto[];
+
+  @hasMany(() => Capacitacion)
+  capacitacions: Capacitacion[];
+
+  @hasOne(() => Prospecto)
+  prospecto: Prospecto;
+
+  @hasMany(() => Servicio)
+  servicios: Servicio[];
+
+  @belongsTo(() => Sucursal)
+  sucursalId: string;
+
+  @property({
+    type: 'string',
+  })
+  prospectoId?: string;
+
+  @property({
+    type: 'string',
+  })
+  colaboradorId?: string;
 
   constructor(data?: Partial<Usuario>) {
     super(data);

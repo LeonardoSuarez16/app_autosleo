@@ -1,112 +1,105 @@
-import {Entity, model, property, belongsTo, hasMany} from '@loopback/repository';
-import {Usuario} from './usuario.model';
-import {Sucursal} from './sucursal.model';
-import {Servicio} from './servicio.model';
+import {Entity, model, property, hasMany} from '@loopback/repository';
 import {Producto} from './producto.model';
-import {Plan} from './plan.model';
+import {Sucursal} from './sucursal.model';
 import {Colaborador} from './colaborador.model';
 
 @model()
-export class Vehiculo extends Entity {
+export class Proveedor extends Entity {
   @property({
     type: 'string',
     id: true,
     generated: true,
   })
-  placa?: string;
+  nit?: string;
 
   @property({
     type: 'string',
     required: true,
   })
-  marca: string;
+  razon_social: string;
 
   @property({
     type: 'string',
     required: true,
   })
-  linea: string;
+  nombre_contacto: string;
 
   @property({
     type: 'string',
     required: true,
   })
-  cilindraje: string;
-
-  @property({
-    type: 'string',
-    required: true,
-  })
-  modelo: string;
-
-  @property({
-    type: 'string',
-    required: true,
-  })
-  color: string;
-
-  @property({
-    type: 'string',
-    required: true,
-  })
-  fecha_soat: string;
-
-  @property({
-    type: 'date',
-    required: true,
-  })
-  fecha_RTM: string;
+  celular: string;
 
   @property({
     type: 'number',
     required: true,
   })
-  kilometraje_registro: number;
-
-  @property({
-    type: 'date',
-    required: true,
-  })
-  visita: string;
+  dias_de_credito: number;
 
   @property({
     type: 'string',
     required: true,
   })
-  foto: string;
+  tipo_de_regimen: string;
+
+  @property({
+    type: 'number',
+    required: true,
+  })
+  rete_ica: number;
+
+  @property({
+    type: 'number',
+    required: true,
+  })
+  rete_fuente: number;
+
+  @property({
+    type: 'number',
+    required: true,
+  })
+  rete_iva: number;
 
   @property({
     type: 'string',
     required: true,
   })
-  tipo_de_vehiculo: string;
+  direccion: string;
 
   @property({
     type: 'string',
     required: true,
   })
-  observacion: string;
+  correo: string;
 
   @property({
     type: 'string',
     required: true,
   })
-  tipo_servicio: string;
+  telefono: string;
 
-  @belongsTo(() => Usuario)
-  usuarioId: string;
+  @property({
+    type: 'string',
+    required: true,
+  })
+  tipo_de_persona: string;
 
-  @hasMany(() => Sucursal)
-  sucursals: Sucursal[];
+  @property({
+    type: 'string',
+    required: true,
+  })
+  tipo_de_identificacion: string;
 
-  @hasMany(() => Servicio)
-  servicios: Servicio[];
+  @property({
+    type: 'string',
+  })
+  sucursalId?: string;
 
   @hasMany(() => Producto)
   productos: Producto[];
 
-  @hasMany(() => Plan)
-  plans: Plan[];
+  @hasMany(() => Sucursal)
+  sucursals: Sucursal[];
 
   @hasMany(() => Colaborador)
   colaboradors: Colaborador[];
@@ -114,12 +107,7 @@ export class Vehiculo extends Entity {
   @property({
     type: 'string',
   })
-  sucursalId?: string;
-
-  @property({
-    type: 'string',
-  })
-  prospectoId?: string;
+  productoId?: string;
 
   @property({
     type: 'string',
@@ -131,18 +119,13 @@ export class Vehiculo extends Entity {
   })
   colaboradorId?: string;
 
-  @property({
-    type: 'string',
-  })
-  capacitacionId?: string;
-
-  constructor(data?: Partial<Vehiculo>) {
+  constructor(data?: Partial<Proveedor>) {
     super(data);
   }
 }
 
-export interface VehiculoRelations {
+export interface ProveedorRelations {
   // describe navigational properties here
 }
 
-export type VehiculoWithRelations = Vehiculo & VehiculoRelations;
+export type ProveedorWithRelations = Proveedor & ProveedorRelations;

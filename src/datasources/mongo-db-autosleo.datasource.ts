@@ -4,7 +4,7 @@ import {juggler} from '@loopback/repository';
 const config = {
   name: 'mongo_db_autosleo',
   connector: 'mongodb',
-  url: '',
+  url: 'mongodb+srv://Autosleo_1234:Autosleo_1234@clusterautosleo.y0enuaj.mongodb.net/autosleodb?retryWrites=true&w=majority',
   host: '',
   port: 0,
   user: '',
